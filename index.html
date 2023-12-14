@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Translate Extension Chrome</title>
+</head>
+<body>
+    
+    <label for="inputText">Your Text:</label>
+    <textarea name="" id="inputText" rows="10" placeholder="Type de text here....."></textarea>
+
+    <div>
+        <label for="translateFrom">translate From:</label>
+        <select name="" id="translateFrom">
+            <option value="en">English</option>
+        </select>
+        <label for="translateFrom">translate To:</label>
+        <select name="" id="translateFrom">
+            <option value="es">Spanish</option>
+        </select>
+    </div>
+
+    <button id="translateBtn">Translate</button>
+    <button id="speakBtn">Speak</button>
+
+    <div id="outputText" aria-readonly="true"></div>
+
+    
+
+    <script src="countries.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
