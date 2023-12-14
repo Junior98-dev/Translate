@@ -6,6 +6,8 @@ selectTags.forEach((tag, id) =>{
         "") : (country_code === "es" ? "selected" : "");
 
         let option = `<option ${selected} value="${country_code}"> ${countries[country_code]}</option>`;
-        
+        tag.insertAdjacentHTML("beforeend", option);
+
+
     }
-})
+});
