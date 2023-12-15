@@ -11,3 +11,26 @@ selectTags.forEach((tag, id) =>{
 
     }
 });
+
+document.getElementById('translateBtn').addEventListener('click', function (){
+    const text = document.getElementById('inputText').value;
+    const translateFrom = document.getElementById('translateFrom').value;
+    const translateTo = document.getElementById('translateTo').value;
+    translateText(text, translateFrom, translateTo);
+});
+
+function translateText(inputText, fromLang, toLang) {
+    const apiUrl = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText)}&langpair=${fromLang}|${toLang}`;
+
+    fetch(apiUrl).then(response => response.json()).then(data => {
+        if (data.responseData) {
+            const translatedText = data.responseData.translatedText;
+            document.getElementById('outputText').innerHTML = translatedText;
+        }else{
+            document.getElementById('outputText').innerHTML = "Error : Could Not Translate!";
+        }
+    }).catch(error =>{
+        console.error('Error:', error);
+        document.getElementById('outputText').innerHTML = "Error : An error occurred while translating!";
+    });
+}
