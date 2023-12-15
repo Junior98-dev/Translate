@@ -25,7 +25,8 @@ function translateText(inputText, fromLang, toLang) {
     fetch(apiUrl).then(response => response.json()).then(data => {
         if (data.responseData) {
             const translatedText = data.responseData.translatedText;
-            document.getElementById('outputText').innerHTML = translatedText;
+            const formattedText = removeQuestionMarks(translatedText);
+            document.getElementById('outputText').innerHTML = formattedText;
         }else{
             document.getElementById('outputText').innerHTML = "Error : Could Not Translate!";
         }
@@ -34,3 +35,20 @@ function translateText(inputText, fromLang, toLang) {
         document.getElementById('outputText').innerHTML = "Error : An error occurred while translating!";
     });
 }
+
+function removeQuestionMarks(text){
+    return text.replace(/^¿+|¿+$/g, '');
+}
+
+function speakText(text){
+    const speechSynthesis = window.speechSynthesis;
+    const speechUtterance = new SpeechSynthesisUtterance(text);
+    speechUtterance.lang = document.getElementById('translateTo').value;
+
+    speechSynthesis.speak(speechUtterance);
+}
+
+document.getElementById('speakBtn').addEventListener('click', function (){
+    const translatedText = document.getElementById('outputText').innerText;
+    speakText(translatedText);
+});
